@@ -1,26 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import "./App.css";
 
 const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<div className="app">
+			<BrowserRouter>
+				<Switch>
+					<Route
+						path="/"
+						render={props => <HelloWorld {...props} name={"Yanks"} />}
+					/>
+				</Switch>
+			</BrowserRouter>
+		</div>
+	);
+};
+
+interface HelloWorld {
+	name: string;
+	age?: number;
 }
+
+export const HelloWorld = (world: HelloWorld) => {
+	return (
+		<div>
+			{world.name}
+			{world.age}
+			<StatefulHello name="Rachel" />
+		</div>
+	);
+};
+
+interface StatefulHello {
+	name: string;
+	ttl?: number;
+}
+
+export const StatefulHello = ({ name, ttl = 3 }: StatefulHello) => {
+	const [currentName, setCurrentName] = useState(name);
+	useEffect(() => {
+		setTimeout(() => {
+			setCurrentName("Marvel");
+		}, ttl * 1000);
+	}, [ttl]);
+	return <div>{currentName}</div>;
+};
 
 export default App;
