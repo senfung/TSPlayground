@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "./App.css";
-1/0;
+1/0/0;
 const App: React.FC = () => {
 	return (
 		<div className="app">
