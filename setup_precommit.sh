@@ -81,7 +81,7 @@ if [ $file_count -gt 0 ]; then
         echo "    hooks:" >> .pre-commit-config.yaml
         echo "    -   id: eslint" >> .pre-commit-config.yaml
 	echo "        types: [file]" >> .pre-commit-config.yaml
-	echo "        files: \.tsx?$" >> .pre-commit-config.yaml
+	echo "        files: \.(js|jsx|ts|tsx)$" >> .pre-commit-config.yaml
     fi
 fi
 
